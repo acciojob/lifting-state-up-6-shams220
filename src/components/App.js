@@ -1,7 +1,7 @@
 
 import React,{useState} from "react";
 import './../styles/App.css';
-import Todos from "./todos";
+import Todos from "./TodoList";
 
 const App = () => {
 
@@ -11,14 +11,19 @@ const App = () => {
     {id:3,text:"Deploy the React app",isComplete:false}
   ]);
  
-  console.log(todos)
+  // console.log(todos)
 
+const handleComplete = (index)=>{
+  setTodos(prev=>prev.map((todo,i)=>
+  i === index ? {...todo,isComplete:true} : todo
+  ))
+}
   return (
-    <div>
+    <div className="parent">
       <h1>Parent Component</h1>
         {/* Do not remove the main div */}
    
-<Todos tasks={todos} setTodos= {setTodos} />
+<Todos todos={todos} handleComplete= {handleComplete} />
     </div>
   )
 }
