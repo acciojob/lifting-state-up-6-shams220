@@ -1,25 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Todos = ({ todos, handleComplete }) => {
-  // const [isComplete,setIsComplete] = useState(false);
-  
-
+const TodoList = ({ todos, handleComplete }) => {
   return (
-    <div >
+    <div>
       <h2>Child Component</h2>
       <ul>
         {todos.map((todo, index) => (
-          <li key={todos.id}>
-            <p>{todo.text}</p>
-{
-  !todo.isComplete && 
-            <button onClick={()=>handleComplete(index)}>complete</button>
+          <li key={todo.id}>
+            <p
+              style={{
+                textDecoration: todo.isComplete ? "line-through" : "none"
+              }}
+            >
+              {todo.text}
+            </p>
 
-}          </li>
+            {!todo.isComplete && (
+              <button onClick={() => handleComplete(index)}>complete</button>
+            )}
+          </li>
         ))}
       </ul>
     </div>
   );
 };
 
-export default Todos;
+export default TodoList;
